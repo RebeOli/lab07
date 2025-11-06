@@ -41,7 +41,7 @@ public final class MonthSorterNested implements MonthSorter {
         public int getDays(){
             return this.days;
         }
-        public Month fromString(String month){
+        public static Month fromString(String month){
             if(month==null){throw new NullPointerException();}
             List<Month> listMonth= new ArrayList<>();
             String monthLower=month.trim().toLowerCase();
@@ -57,17 +57,42 @@ public final class MonthSorterNested implements MonthSorter {
             }
         }
     }
+        //Nested Class non deve stare dentro l'enum. 
+        public static class SortByMonthOrder implements Comparator<String>{
+            public int compare(String month1, String month2){
+                return Month.fromString(month1).compareTo(Month.fromString(month2));
 
-    
-    @Override
-    public Comparator<String> sortByDays() {
-        return null;
-    }
+            }
+        }
+        //Nested Class
+        public static class SortByDate implements Comparator<String>{
+            /*public int compare(String month1, String month2){
+                if(Month.fromString(month1).getDays()<Month.fromString(month2).getDays()){
+                    return -1;
+                }else if(Month.fromString(month1).getDays()==Month.fromString(month2).getDays()){
+                    return 0;
+                }else{
+                    return 1;
+                }
+            }*/
+            public int compare(String month1, String month2){
+                return Integer.compare(Month.fromString(month1).getDays(),Month.fromString(month2).getDays());
+        
+            }
+        }
 
-    @Override
-    public Comparator<String> sortByOrder() {
-        return null;
-    }
 
-    
+        @Override
+        public Comparator<String> sortByDays (){ //Mi restituisce un oggetto comparator per ordinare in base alle date
+            /* un comparator è un oggetto che sa confrontare due elementi di tipo <String> */
+            return new SortByDate();
+
+        }
+
+        @Override
+        public Comparator<String> sortByOrder(){
+            return new SortByMonthOrder();
+        }
+
+       
 }
