@@ -31,7 +31,7 @@ class TestSimpleBankAccount {
         this.aBianchi = new AccountHolder("Andrea", "Bianchi", 2);
         this.bankAccount = new SimpleBankAccount(mRossi, 0.0);
     }
-
+    
     /**
      * Check that the initialization of the BankAccount is created with the correct values.
      */

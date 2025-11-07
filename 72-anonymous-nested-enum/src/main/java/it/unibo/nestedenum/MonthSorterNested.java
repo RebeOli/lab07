@@ -59,7 +59,7 @@ public final class MonthSorterNested implements MonthSorter {
     }
         //Nested Class non deve stare dentro l'enum. 
         public static class SortByMonthOrder implements Comparator<String>{
-            public int compare(String month1, String month2){
+            public int compare(final String month1, final String month2){
                 return Month.fromString(month1).compareTo(Month.fromString(month2));
 
             }
@@ -75,7 +75,7 @@ public final class MonthSorterNested implements MonthSorter {
                     return 1;
                 }
             }*/
-            public int compare(String month1, String month2){
+            public int compare(final String month1, final String month2){
                 return Integer.compare(Month.fromString(month1).getDays(),Month.fromString(month2).getDays());
         
             }
