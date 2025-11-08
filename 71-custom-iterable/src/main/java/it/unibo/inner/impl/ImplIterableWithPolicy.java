@@ -15,18 +15,18 @@ public class ImplIterableWithPolicy<T> implements IterableWithPolicy<T>{
     public ImplIterableWithPolicy(T[] ListOfElements){
        this.elements=List.of(ListOfElements); //viene creata una lista i cui elementi sono quelli dell'array
     }*/
-    public ImplIterableWithPolicy(T[] ListOfElements){
+    public ImplIterableWithPolicy(final T[] ListOfElements){
         this(ListOfElements, new Predicate<T>(){ //creo una classe anonima
             public boolean test(T el){
                 return true;
             }
         });
     }
-    public ImplIterableWithPolicy(T[] ListOfElements, Predicate<T> predicate){
+    public ImplIterableWithPolicy(final T[] ListOfElements, final Predicate<T> predicate){
        this.elements=List.of(ListOfElements);
        this.predicate=predicate;
     }
-    public void setIterationPolicy(Predicate<T> filter){
+    public void setIterationPolicy(final Predicate<T> filter){
         this.predicate=filter;
     }
 
@@ -39,7 +39,7 @@ public class ImplIterableWithPolicy<T> implements IterableWithPolicy<T>{
         public implIterator(){
             this.current=0;
         }
-
+        @Override
         public boolean hasNext(){
             while(elements.size()>current){
                 if(predicate.test(elements.get(current))){
@@ -50,7 +50,7 @@ public class ImplIterableWithPolicy<T> implements IterableWithPolicy<T>{
             }
             return false;
         }
-
+        @Override
         public T next(){ //se c'è l'elemento successivo della lista mi sposto e lo prendo
             if(hasNext()){
                     return elements.get(current++);
@@ -66,5 +66,3 @@ public class ImplIterableWithPolicy<T> implements IterableWithPolicy<T>{
     
 
 }
-
-//per consegnare faccio add, commit, push
