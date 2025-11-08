@@ -24,7 +24,7 @@ public interface Function<I, O> {
      */
     static <T> Function<T, T> identity() {
         return new Function<T,T>() {
-            public T call (T input){
+            public T call (final T input){
                 return input;
             }
         };

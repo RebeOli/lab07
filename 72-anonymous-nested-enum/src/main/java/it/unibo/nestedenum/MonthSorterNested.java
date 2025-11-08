@@ -41,7 +41,7 @@ public final class MonthSorterNested implements MonthSorter {
         public int getDays(){
             return this.days;
         }
-        public static Month fromString(String month){
+        public static Month fromString(final String month){
             if(month==null){throw new NullPointerException();}
             List<Month> listMonth= new ArrayList<>();
             String monthLower=month.trim().toLowerCase();

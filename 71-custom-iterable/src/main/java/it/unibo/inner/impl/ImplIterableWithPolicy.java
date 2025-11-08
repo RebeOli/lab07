@@ -59,10 +59,7 @@ public class ImplIterableWithPolicy<T> implements IterableWithPolicy<T>{
             }
         }
     }
-
     public implIterator iterator(){
         return new implIterator();
     }
-    
-
 }
